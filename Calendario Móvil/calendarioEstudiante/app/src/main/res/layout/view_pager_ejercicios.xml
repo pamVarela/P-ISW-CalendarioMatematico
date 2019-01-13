@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DCDCDC">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpagerE"
+        android:layout_width="match_parent"
+        android:layout_height="376dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="25dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <ImageButton
+        android:id="@+id/btnS"
+        android:layout_width="68dp"
+        android:layout_height="66dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="86dp"
+        android:layout_marginBottom="42dp"
+        android:background="#002c8870"
+        app:srcCompat="@drawable/eye" />
+
+    <ImageButton
+        android:id="@+id/btnArte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnS"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="107dp"
+        android:layout_marginBottom="5dp"
+        android:background="#002c8870"
+        app:srcCompat="@drawable/arte" />
+
+</RelativeLayout>

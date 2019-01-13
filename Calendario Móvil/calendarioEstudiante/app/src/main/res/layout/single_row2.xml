@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="80dp"
+    android:layout_gravity="fill"
+    android:background="#328e76"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <TextView
+        android:id="@+id/contenido2"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
+        android:minLines="3"
+        android:padding="8dip"
+        android:text=""
+        android:textColor="#fafafa"
+        android:textSize="16sp" />
+
+    <com.example.admin.calendarioestudiante.widget.noPresionarBotonPadre
+        android:id="@+id/addCursos"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@color/transparente"
+        android:focusable="false"
+        android:gravity="end"
+        android:padding="8dp"
+        android:src="@drawable/add" />
+
+</LinearLayout>

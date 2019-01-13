@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#c82c8870"
+    android:layout_height="match_parent"
+    tools:context="login">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="417dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:alpha="0.5"
+        android:background="@drawable/fondo"
+        tools:layout_editor_absoluteX="-4dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="301dp"
+        android:layout_marginEnd="265dp"
+        android:fontFamily="@font/roboto"
+        android:text="CURSOS"
+        android:textAlignment="center"
+        android:textColor="#fafafa"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="29dp"
+        android:fontFamily="@font/roboto"
+        android:text="ACERCA DE LA APP"
+        android:textAlignment="center"
+        android:textColor="#fafafa"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <TextView
+        android:id="@+id/nombreProfesor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-172dp"
+        android:layout_marginEnd="142dp"
+        android:fontFamily="@font/roboto"
+        android:text="Nombre usuario"
+        android:textAlignment="center"
+        android:textColor="#fafafa"
+        android:textSize="16sp"
+        android:typeface="normal"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="179dp"
+        android:layout_marginBottom="85dp"
+        android:fontFamily="@font/roboto"
+        android:text="SALIR"
+        android:textAlignment="center"
+        android:textColor="#FAFAFA"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        tools:layout_editor_absoluteX="173dp"
+        tools:layout_editor_absoluteY="413dp" />
+
+    <ImageButton
+        android:id="@+id/salir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="358dp"
+        android:background="#002c8870"
+        app:srcCompat="@drawable/logout" />
+
+    <ImageButton
+        android:id="@+id/cursos"
+        android:layout_width="116dp"
+        android:layout_height="115dp"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="60dp"
+        android:background="#002c8870"
+        app:srcCompat="@drawable/hat" />
+
+    <ImageButton
+        android:id="@+id/acercaApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="202dp"
+        android:layout_toEndOf="@+id/salir"
+        android:background="#002c8870"
+        app:srcCompat="@drawable/about" />
+
+    <ImageView
+        android:id="@+id/fotoProfe"
+        android:layout_width="75dp"
+        android:layout_height="79dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="-14dp"
+        android:layout_toStartOf="@+id/textView3"
+        app:srcCompat="@drawable/avatar" />
+
+</RelativeLayout>
