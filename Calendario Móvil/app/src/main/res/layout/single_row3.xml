@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="80dp"
+    android:layout_gravity="fill"
+    android:descendantFocusability="blocksDescendants"
+   >
+
+    <TextView
+        android:id="@+id/contenidoCursos"
+        android:layout_width="270dp"
+        android:layout_height="89dp"
+        android:minLines="4"
+        android:padding="10dip"
+        android:text=""
+        android:textColor="#2C8870"
+        android:textSize="16sp" />
+
+    <com.example.admin.calendarioestudiante.widget.noPresionarBotonPadre
+        android:id="@+id/editar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@color/transparente"
+        android:padding="8dp"
+        android:src="@drawable/ic_action_edit"
+        android:focusable="false"
+      />
+
+    <com.example.admin.calendarioestudiante.widget.noPresionarBotonPadre
+        android:id="@+id/borrar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@color/transparente"
+        android:padding="8dp"
+        android:focusable="false"
+        android:src="@drawable/ic_action_delete"
+       />
+
+
+</LinearLayout>
+
+
+
