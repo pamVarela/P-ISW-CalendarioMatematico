@@ -11,8 +11,6 @@
     <string name="academico">CURSOS</string>
     <string name="eliminar_contenido">Eliminar contenido</string>
     <string name="eliminar_contenido_msg">¿Está seguro que quiere eliminar el contenido ?</string>
-    <string name="fallaLogin">Ha fallado el ingreso, no hay conexión</string>
-    <string name="unknown_response">Solicitud desconocida</string>
     <string name="about">Acerca de la app</string>
     <string name="editar_curso">Editar Curso</string>
     <string name="editar_periodo">Periodo del Curso</string>

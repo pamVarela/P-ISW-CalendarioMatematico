@@ -12,8 +12,20 @@ import android.widget.Toast;
 
 import com.example.admin.calendarioestudiante.model.Usuario;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,55 +33,83 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class login extends AppCompatActivity {
+public class login extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
+    private GoogleApiClient googleApiClient;
+    private static final int SIGN_IN_CODE = 777;
+    private Button boton;
     private static final int RC_SIGN_IN = 1;
     private static final String PATH_TOS = "";
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private Long numeroKeys;
     private static final String TAG = login.class.getSimpleName();
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        auth = FirebaseAuth.getInstance();
+        setContentView(R.layout.activity_login);
 
         contadorKeysUsuarios();
 
-        if(isUserLogin()){
-            loginUser();
-        }
+        contadorKeysUsuarios();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
-        setContentView(R.layout.activity_login);
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        boton  = findViewById(R.id.login);
 
-        final Button boton = findViewById(R.id.login);
         boton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
-                startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
-                .setTosUrl(PATH_TOS)
-                .build(),RC_SIGN_IN);
-
-
+                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                startActivityForResult(intent, SIGN_IN_CODE);
             }
         });
+
+        auth = FirebaseAuth.getInstance();
+        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    loginUser();
+                }
+            }
+        };
     }
 
-    private boolean isUserLogin(){
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-        if(auth.getCurrentUser() != null){
-            return true;
+       auth.addAuthStateListener(firebaseAuthListener);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+
+    private void handleSignInResult(GoogleSignInResult result){
+        if (result.isSuccess()) {
+            firebaseAuthWithGoogle(result.getSignInAccount());
+        } else {
+            Toast.makeText(this, "No se puede iniciar sesión", Toast.LENGTH_SHORT).show();
         }
-        return false;
-
     }
 
+
+    //metodo para loguear un usuario desde Firebase
     private void loginUser(){
 
         contadorKeysUsuarios();
@@ -128,29 +168,14 @@ public class login extends AppCompatActivity {
 
     }
 
-    private void mensajeAviso(String mensaje){
-        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
-    }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RC_SIGN_IN) {
-
-            if (resultCode == RESULT_OK) {
-                // Se loguea de manera exitosa
-              loginUser();
-            }
-            if (resultCode == RESULT_CANCELED){
-                mensajeAviso(getString(R.string.fallaLogin));
-            }
-
-            return;
+        if (requestCode == SIGN_IN_CODE) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
         }
-
-        mensajeAviso(getString(R.string.unknown_response));
     }
 
     public void contadorKeysUsuarios() {
@@ -172,6 +197,33 @@ public class login extends AppCompatActivity {
         });
 
     }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount signInAccount) {
+
+        boton.setVisibility(View.GONE);
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(signInAccount.getIdToken(), null);
+        auth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                boton.setVisibility(View.VISIBLE);
+                if (!task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "No se pudo autenticar con Firebase", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (firebaseAuthListener != null) {
+            auth.removeAuthStateListener(firebaseAuthListener);
+        }
+    }
+
 
 
 

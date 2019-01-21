@@ -45,7 +45,7 @@ public class temas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temas);
 
-        //Llamada de las variables en la interfaz e inicializar otras
+        //Inicializar las variables
         nombreTema = findViewById(R.id.nombreTema);
 
         codigo = getIntent().getStringExtra("codigo");

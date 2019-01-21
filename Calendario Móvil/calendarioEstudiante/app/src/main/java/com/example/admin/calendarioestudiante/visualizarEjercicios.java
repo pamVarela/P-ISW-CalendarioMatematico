@@ -210,13 +210,22 @@ public class visualizarEjercicios extends AppCompatActivity {
                             contadorTemas = numInt;
                         }
 
-                        if(contadorEjs == contadorEj){
-                            Toast.makeText(getApplicationContext(), "No hay ejercicios disponibles para hoy", Toast.LENGTH_SHORT).show();
+                        if(contadorEjs != 0 && contadorEj != 0){
+
+                            if(contadorEjs == contadorEj){
+                              Toast.makeText(getApplicationContext(), "No hay ejercicios disponibles para hoy", Toast.LENGTH_SHORT).show();
+                          }
+
                         }
 
-                        if (contadorTemas == contador) {
-                            Toast.makeText(getApplicationContext(), "No hay ejercicios disponibles para hoy", Toast.LENGTH_SHORT).show();
+                        if(contadorTemas != 0 && contador != 0){
+
+                            if (contadorTemas == contador) {
+                                Toast.makeText(getApplicationContext(), "No hay ejercicios disponibles para hoy", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
+
                     }
 
                 }
