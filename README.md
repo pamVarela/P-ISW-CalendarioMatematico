@@ -1,7 +1,9 @@
 # P-ISW-CalendarioMatematico
-Aplicación desarrollada en Android <\br>
-Calendario matemático CIEMAC <\br>
-Curso Verano 2018 -2019 <\br>
+Aplicación desarrollada en Android
+
+Calendario matemático CIEMAC
+
+Curso Verano 2018 -2019 
 
 Semana del 16 diciembre al 9 de enero 
 -Iteración 1 y 2
